@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">家南商城-商家端</string>
+    <string name="phone_number">手机号码</string>
+    <string name="users_email_hint">账号/邮箱</string>
+    <string name="login_password">登录密码</string>
+    <string name="remember_password">记住密码</string>
+    <string name="find_password">找回密码</string>
+</resources>

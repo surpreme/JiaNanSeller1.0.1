@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.aite.jiananseller.R" />
+        <variable
+            name="viewModel"
+            type="com.aite.jiananseller.ui.vm.item.MsgItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginLeft="20dp"
+            android:src="@{viewModel.msgIcon2}"
+            binding:url="@{viewModel.msgIcon}"
+            binding:placeholderRes="@{R.drawable.msg_order}"
+            android:layout_marginTop="15dp" />
+
+        <TextView
+            android:id="@+id/tv_msg_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.msgName}"
+            android:textColor="@color/colorText"
+            android:layout_marginLeft="9dp"
+            app:layout_constraintTop_toTopOf="@id/iv_photo"
+            app:layout_constraintLeft_toRightOf="@id/iv_photo" />
+
+        <TextView
+            android:id="@+id/tv_msg_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.msgContent}"
+            android:textColor="#999999"
+            android:textSize="14sp"
+            android:layout_marginLeft="9dp"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="10dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_msg_name"
+            app:layout_constraintLeft_toRightOf="@id/iv_photo" />
+
+        <TextView
+            android:id="@+id/tv_msg_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.msgTime}"
+            app:layout_constraintLeft_toLeftOf="@id/tv_msg_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_msg_content" />
+
+        <TextView
+            android:id="@+id/tv_msg_count"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/msg_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="30dp"
+            android:textSize="12sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:text="1" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_msg_time"
+            android:layout_marginTop="15dp"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

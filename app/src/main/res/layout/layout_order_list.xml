@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+        <import type="android.widget.LinearLayout" />
+        <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
+        <variable
+            name="adapter"
+            type="BindingRecyclerViewAdapter" />
+
+        <variable
+            name="viewModel"
+            type="com.aite.jiananseller.ui.vm.item.OrderItemViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="11dp"
+        android:layout_marginBottom="10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/dingdan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="订单号:"
+                android:textColor="@color/colorText"
+                android:textSize="13sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/tv_order_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.orderId}"
+                android:textColor="@color/colorText"
+                android:textSize="13sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/dingdan"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp" />
+
+            <TextView
+                android:id="@+id/tv_order_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.orderState}"
+                android:textColor="@color/colorText"
+                android:textSize="13sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_order_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                binding:adapter = "@{adapter}"
+                binding:itemBinding="@{viewModel.itemBinding}"
+                binding:items="@{viewModel.observableList}"
+                binding:layoutManager="@{LayoutManagers.linear()}"
+                app:layout_constraintTop_toBottomOf="@id/tv_order_num" />
+
+            <TextView
+                android:id="@+id/tv_all_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.orderAmount}"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_order_list"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总计:"
+                app:layout_constraintRight_toLeftOf="@id/tv_all_money"
+                app:layout_constraintTop_toBottomOf="@id/rv_order_list"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/bt_cancel"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="取消订单"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="#999999"
+                android:layout_marginTop="7dp"
+                android:visibility="@{viewModel.bt1Visible}"
+                android:layout_marginRight="10dp"
+                app:layout_constraintRight_toLeftOf="@id/bt_issure"
+                app:layout_constraintTop_toBottomOf="@id/tv_all_money"
+                android:background="@drawable/bt_order_cancel" />
+
+            <TextView
+                android:id="@+id/bt_issure"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="@={viewModel.btText}"
+                android:textSize="12sp"
+                android:visibility="@{viewModel.bt2Visible}"
+                android:gravity="center"
+                android:layout_marginRight="15dp"
+                binding:onClickCommand="@{viewModel.onWorkOnClick}"
+                android:layout_marginTop="7dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_all_money"
+                android:textColor="@color/colorMain"
+                android:background="@drawable/bt_order_issure" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

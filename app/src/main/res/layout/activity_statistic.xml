@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.aite.jiananseller.R"/>
+        <variable
+            name="viewModel"
+            type="com.aite.jiananseller.ui.vm.main.StatisticViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F6F6">
+
+        <include
+            android:id="@+id/title"
+            layout="@layout/title" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_store"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:cardCornerRadius="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="92dp"
+                    android:layout_height="92dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    binding:url="@{viewModel.photo}"
+                    binding:placeholderRes="@{R.mipmap.ic_launcher_round}"
+                    android:layout_marginLeft="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.storeName}"
+                    android:textColor="@color/colorText"
+                    android:textSize="15sp"
+                    app:layout_constraintTop_toTopOf="@id/iv_photo"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintLeft_toRightOf="@id/iv_photo" />
+
+                <TextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    app:layout_constraintLeft_toRightOf="@id/iv_photo"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="店铺总销量" />
+
+                <TextView
+                    android:id="@+id/tv_sell_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/tv_1"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.storeSales}" />
+
+                <TextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    app:layout_constraintLeft_toRightOf="@id/tv_sell_count"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="商品总数" />
+
+                <TextView
+                    android:id="@+id/tv_goods_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/tv_2"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_name"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.AllGoodsCount}" />
+
+                <TextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_1"
+                    app:layout_constraintLeft_toRightOf="@id/iv_photo"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="收藏量" />
+
+                <TextView
+                    android:id="@+id/tv_collect_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/tv_3"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_1"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.storeCollect}" />
+
+                <TextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/tv_1"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_2"
+                    android:layout_marginTop="8dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="好评率" />
+
+                <TextView
+                    android:id="@+id/tv_reputation_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toRightOf="@id/tv_4"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/tv_1"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.storeCreditPercent}" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/jiaoyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="交易数据"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/cv_store"
+            android:layout_marginTop="40dp"
+            app:layout_constraintLeft_toLeftOf="@id/cv_store"
+            android:textColor="@color/colorText" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_1"
+            android:layout_width="165dp"
+            android:layout_height="65dp"
+            app:layout_constraintTop_toBottomOf="@id/jiaoyi"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/center_view"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card1">
+
+            <TextView
+                android:id="@+id/count_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.dailySales}"
+                android:textColor="@color/white"
+                android:layout_marginTop="14dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昨日销量(件）"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="@id/count_1"
+                app:layout_constraintRight_toRightOf="@id/count_1"
+                app:layout_constraintTop_toBottomOf="@id/count_1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/center_view"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_2"
+            android:layout_width="165dp"
+            android:layout_height="65dp"
+            app:layout_constraintTop_toBottomOf="@id/jiaoyi"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/center_view"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card2">
+
+            <TextView
+                android:id="@+id/count_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.yesToadayMoney}"
+                android:textColor="@color/white"
+                android:layout_marginTop="14dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="昨日收入(元）"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="@id/count_2"
+                app:layout_constraintRight_toRightOf="@id/count_2"
+                app:layout_constraintTop_toBottomOf="@id/count_2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E2E2E2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cl_1"
+            android:layout_marginTop="20dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_3"
+            android:layout_width="165dp"
+            android:layout_height="65dp"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/center_view"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card3">
+
+            <TextView
+                android:id="@+id/count_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.todaySales}"
+                android:textColor="@color/white"
+                android:layout_marginTop="14dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日销量(件）"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="@id/count_3"
+                app:layout_constraintRight_toRightOf="@id/count_3"
+                app:layout_constraintTop_toBottomOf="@id/count_3" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_4"
+            android:layout_width="165dp"
+            android:layout_height="65dp"
+            app:layout_constraintTop_toBottomOf="@id/view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/center_view"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/card4">
+
+            <TextView
+                android:id="@+id/count_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.todayMoney}"
+                android:textColor="@color/white"
+                android:layout_marginTop="14dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintHorizontal_bias="0.7"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="今日收入(元）"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="@id/count_4"
+                app:layout_constraintRight_toRightOf="@id/count_4"
+                app:layout_constraintTop_toBottomOf="@id/count_4" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

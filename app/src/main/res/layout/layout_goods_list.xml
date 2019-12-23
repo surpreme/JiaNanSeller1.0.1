@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.aite.jiananseller.R" />
+
+        <import type="com.aite.jiananseller.ui.vm.item.GoodsItemViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.aite.jiananseller.ui.vm.item.GoodsItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_goods"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginLeft="7.5dp"
+            android:layout_marginTop="7.5dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/color_orange"
+            binding:placeholderRes="@{R.color.color_orange}"
+            binding:url="@{viewModel.goodPhoto}" />
+
+        <TextView
+            android:id="@+id/tv_goods_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{viewModel.goodsName}"
+            android:textColor="@color/colorText"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toRightOf="@id/iv_goods"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_goods" />
+
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="17dp"
+            android:text="@{viewModel.goodsMoney}"
+            android:textColor="#EB0000"
+            android:textSize="19sp"
+            app:layout_constraintLeft_toRightOf="@id/iv_goods"
+            app:layout_constraintTop_toBottomOf="@id/tv_goods_name" />
+
+        <TextView
+            android:id="@+id/tv_repertory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:text="@{viewModel.goodsrepertory}"
+            android:textColor="#999999"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_money"
+            app:layout_constraintLeft_toRightOf="@id/tv_money" />
+
+        <Button
+            android:id="@+id/bt_delete"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bt_goods"
+            android:text="删除"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.bt1Visible}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/bt_edit"
+            binding:onClickCommand="@{viewModel.deleteOnClick}" />
+
+        <Button
+            android:id="@+id/bt_up_goods"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bt_goods"
+            android:text="@={viewModel.btText}"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.bt3Visible}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            binding:onClickCommand="@{viewModel.showOnClick}" />
+
+        <Button
+            android:id="@+id/bt_edit"
+            android:layout_width="60dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bt_goods"
+            android:text="编辑"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.bt2Visible}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/bt_up_goods"
+            binding:onClickCommand="@{viewModel.editOnClick}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="libraryname">BaseLibrary</string>
+    <string name="adviceDialogpopinformation">
+        1. 请使用jpgjpegpng等格式、单张大小不超过4M的正方形图片。\n\n
+        2. 上传图片最大尺寸将被保留为1280像素。\n\n
+        3. 每种颜色最多可上传5张图片或从图片空间中选择已有的图片，上传后的图片也将被保存在店铺图片空间中以便其它使用。\n\n
+        4. 通过更改排序数字修改商品图片的排列显示顺序。\n\n
+        5. 图片质量要清晰，不能虚化，要保证亮度充足。\n\n
+        6. 操作完成后请点下一步，否则无法在网站生效。
+    </string>
+    <string name="adviceDialogpopSecondinformation">
+    1. 主图为白色背景正面图。\n\n
+    2. 排序依次为正面图->背面图->侧面图->细节图。\n
+    </string>
+</resources>

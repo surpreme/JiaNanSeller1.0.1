@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:binding="http://schemas.android.com/tools">
+
+    <data>
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+        <import type="me.goldze.mvvmhabit.binding.viewadapter.recyclerview.LineManagers" />
+        <import type="android.widget.LinearLayout" />
+        <import type="me.tatarka.bindingcollectionadapter2.BindingRecyclerViewAdapter" />
+        <variable
+            name="adapter"
+            type="BindingRecyclerViewAdapter" />
+        <variable
+            name="viewModel"
+            type="com.aite.jiananseller.ui.vm.main.SearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/iv_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_marginLeft="5dp"
+            android:onClick="@{viewModel.retrunOnclick}"
+            app:srcCompat="@drawable/main_return" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="270dp"
+            android:layout_height="30dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:background="@drawable/bg_seach"
+            app:layout_constraintTop_toTopOf="@id/iv_return"
+            android:drawableLeft="@drawable/main_search"
+            android:hint="搜索"
+            android:textSize="14sp"
+            android:textColorHint="#999999"
+            android:drawablePadding="10dp"
+            android:paddingLeft="25dp" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:layout_marginLeft="5dp"
+            android:padding="5dp"
+            app:layout_constraintTop_toTopOf="@id/et_search"
+            app:layout_constraintBottom_toBottomOf="@id/et_search"
+            app:layout_constraintLeft_toRightOf="@id/et_search"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_clean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:visibility="@{viewModel.bt1Visible}"
+            app:layout_constraintTop_toBottomOf="@id/et_search">
+            <TextView
+                android:id="@+id/tv_history_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="搜索历史"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="15dp"
+                android:textColor="#888888"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/clear_all_records"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清除记录"
+                android:textSize="14sp"
+                android:textColor="@color/colorText"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="15dp" />
+            <com.aite.jiananseller.ui.customview.flowlayout.TagFlowLayout
+                android:id="@+id/fl_search_records"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/clear_all_records"
+                app:is_limit="true"
+                app:limit_line_count="3"
+                app:max_select="1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.bt4Visible}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_search"
+            >
+        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srlAccentColor="#999"
+            app:srlClassicsSpinnerStyle="FixedBehind"
+            app:srlPrimaryColor="#fff" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_goods_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                binding:itemBinding="@{viewModel.itemBinding}"
+                binding:items="@{viewModel.observableList}"
+                binding:layoutManager="@{LayoutManagers.linear()}"
+                android:visibility="@{viewModel.bt2Visible}"
+                binding:adapter="@{adapter}"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_goods_list2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                binding:itemBinding="@{viewModel.itemBinding2}"
+                binding:items="@{viewModel.observableList2}"
+                binding:layoutManager="@{LayoutManagers.linear()}"
+                android:visibility="@{viewModel.bt3Visible}"
+                binding:adapter="@{adapter}"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlClassicsSpinnerStyle="Translate" />
+
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
